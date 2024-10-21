@@ -19,13 +19,22 @@
 # Set the given parameters to obtain the specified policies through
 # value iteration.
 
+# Using python gridworld.py -g DiscountGrid -a value --discount 0.9 --noise 0.2 --livingReward 0 from the slides as a baseline
+
+# decrease randomness (noise) to have the agent prioritize going through the cliff. Increase to have it avoid the cliff
+
 def question2a():
     """
       Prefer the close exit (+1), risking the cliff (-10).
     """
-    answerDiscount = None
-    answerNoise = None
-    answerLivingReward = None
+    # -lower noise, increase lR
+    
+    #Alt.
+    #python gridworld.py -g DiscountGrid -a value --discount 0.9 --noise 0.4 --livingReward -1.5
+
+    answerDiscount = 0.9
+    answerNoise = 0.1
+    answerLivingReward = -3
     return answerDiscount, answerNoise, answerLivingReward
     # If not possible, return 'NOT POSSIBLE'
 
@@ -33,9 +42,11 @@ def question2b():
     """
       Prefer the close exit (+1), but avoiding the cliff (-10).
     """
-    answerDiscount = None
-    answerNoise = None
-    answerLivingReward = None
+    # - Lower the noise a bit, increase living reward and discount
+
+    answerDiscount = 0.7
+    answerNoise = 0.45
+    answerLivingReward = -1.3
     return answerDiscount, answerNoise, answerLivingReward
     # If not possible, return 'NOT POSSIBLE'
 
@@ -43,9 +54,11 @@ def question2c():
     """
       Prefer the distant exit (+10), risking the cliff (-10).
     """
-    answerDiscount = None
-    answerNoise = None
-    answerLivingReward = None
+    
+    # - no noise
+    answerDiscount = 0.9
+    answerNoise = 0.0
+    answerLivingReward = 0.0
     return answerDiscount, answerNoise, answerLivingReward
     # If not possible, return 'NOT POSSIBLE'
 
@@ -53,9 +66,12 @@ def question2d():
     """
       Prefer the distant exit (+10), avoiding the cliff (-10).
     """
-    answerDiscount = None
-    answerNoise = None
-    answerLivingReward = None
+    
+    # - no lR, no noise, 
+    
+    answerDiscount = 0.9
+    answerNoise = 0.2
+    answerLivingReward = 0.0
     return answerDiscount, answerNoise, answerLivingReward
     # If not possible, return 'NOT POSSIBLE'
 
@@ -63,9 +79,12 @@ def question2e():
     """
       Avoid both exits and the cliff (so an episode should never terminate).
     """
-    answerDiscount = None
-    answerNoise = None
-    answerLivingReward = None
+    
+    # - livingReward > any exit's reward
+
+    answerDiscount = 0.9
+    answerNoise = 0.2
+    answerLivingReward = 20
     return answerDiscount, answerNoise, answerLivingReward
     # If not possible, return 'NOT POSSIBLE'
 

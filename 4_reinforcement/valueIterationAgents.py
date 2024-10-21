@@ -26,6 +26,7 @@
 # Pieter Abbeel (pabbeel@cs.berkeley.edu).
 
 
+from winreg import SetValue
 import mdp, util
 
 from learningAgents import ValueEstimationAgent
@@ -66,11 +67,62 @@ class ValueIterationAgent(ValueEstimationAgent):
         """
         "*** YOUR CODE HERE ***"
 
+        StateList = self.mdp.getStates()
+        
+        #print(StateList)
+        for i in range(self.iterations):
+            print("-----------------------------------------------------------------------------------------Iteration #", i, "-------------------------------------------------------------------------------------------------------------")    
+            print("-----------------------------------------------------------------------------------------Iteration #", i, "-------------------------------------------------------------------------------------------------------------")    
+            print("-----------------------------------------------------------------------------------------Iteration #", i, "-------------------------------------------------------------------------------------------------------------")    
+            ValueClone = self.values.copy()
+            
+            for j in range(len(StateList)):
+                currState = StateList[j] 
+                #self.dispow = 0       
+                print("\n")
+                
+                if(len(self.mdp.getPossibleActions(currState)) > 0):     
+                    #while(True):     
+                    #print("Not Terminal")
+                    #print(self.mdp.getPossibleActions(currState))
+                    #print("CS: ",currState)
+                    #policy = self.getAction(currState)
+                    #print("Correct Act: ", policy)
+                    
+                    #if(policy != "exit"):
+                    #    currState = self.mdp.getTransitionStatesAndProbs(currState, policy)[0][0]
+                        #self.dispow+=1
+                    #else:
+                    #    break
+                    acts = self.mdp.getPossibleActions(currState)
+                    U = max([self.getQValue(currState, a) for a in acts])
+                    ValueClone[currState] = U
+                    
+            
+            self.values = ValueClone
+            #We want to clone the dictionary so that we update the Values ONLY when the iteration is done.
+                
+                #else:
+                #    print("Terminal")
+                #    print(self.mdp.getPossibleActions(currState))
+                #    print("CS: ",currState)
+                    
+                    #self.setValues(self.mdp.getReward(currState, exit, t[0]))
+                    #policy = self.getAction(currState)
+                    
+
+        print(self.values)
+        #for i in self.iterations:    
+        #self.setValues[self.getAction()]    
+
     def getValue(self, state):
         """
           Return the value of the state (computed in __init__).
         """
         return self.values[state]
+
+    def setValues(self, state, v):
+        self.values[state] = v
 
     def computeQValueFromValues(self, state, action):
         """
@@ -78,6 +130,19 @@ class ValueIterationAgent(ValueEstimationAgent):
           value function stored in self.values.
         """
         "*** YOUR CODE HERE ***"
+        curr = state
+        u = 0
+        T = self.mdp.getTransitionStatesAndProbs(curr, action)
+       
+
+        for t in T:
+            #print(self.values)
+            print("From State,", curr,  ", Taking Move: ", action, " to current t: ", t, " with value: ", self.getValue(t[0]), "and reward: ", self.mdp.getReward(curr,action, t[0]))
+            u += t[1] * (self.mdp.getReward(curr,action,t[0]) + self.discount * self.getValue(t[0]))
+            
+        print("Returning: ", u)
+        return u
+
         util.raiseNotDefined()
 
     def computeActionFromValues(self, state):
@@ -90,7 +155,31 @@ class ValueIterationAgent(ValueEstimationAgent):
           terminal state, you should return None.
         """
         "*** YOUR CODE HERE ***"
+        
+        act = 'south'
+        v = float("-inf")
+        #v = -99999
+        Qv = float("-inf")
+        #v = 0
+        for a in self.mdp.getPossibleActions(state):
+            print("Testing Move: ",a)
+            #if a = exit, then this is a terminal state
+            Qv = self.getQValue(state, a)
+            print("State: ", state, ", Qv: ", Qv)
+            print("Comparing v: ", v, ", to Qv: ", Qv)
+            if v < Qv:
+                print("updating a to: ", a)
+                act = a
+                v = Qv
+        #self.setValues(state, v)
+    
+        return act        
+                
+
+        #We're returning an action here.
+        #The action returned should be the best action to take at state
         util.raiseNotDefined()
+        
 
     def getPolicy(self, state):
         return self.computeActionFromValues(state)
@@ -100,4 +189,5 @@ class ValueIterationAgent(ValueEstimationAgent):
         return self.computeActionFromValues(state)
 
     def getQValue(self, state, action):
+        #print(state)
         return self.computeQValueFromValues(state, action)
