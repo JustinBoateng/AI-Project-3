@@ -146,9 +146,10 @@ class QLearningAgent(ReinforcementAgent):
         
         #for i in range(5):  
         sample = reward + self.discount * self.getValue(nextState)
-        self.QVals[(state, action)] = (1 - self.alpha) * self.QVals[(state, action)] + self.alpha * sample
+        #self.QVals[(state, action)] = (1 - self.alpha) * self.QVals[(state, action)] + self.alpha * sample
+        self.QVals[(state, action)] = (1 - self.alpha) * self.getQValue(state,action) + self.alpha * sample
             
-        print("Sample: ", sample)
+        #print("Sample: ", sample)
             
         #print(self.QVals)
         #util.raiseNotDefined()
@@ -205,20 +206,181 @@ class ApproximateQAgent(PacmanQAgent):
     def getWeights(self):
         return self.weights
 
+  
     def getQValue(self, state, action):
         """
           Should return Q(state,action) = w * featureVector
           where * is the dotProduct operator
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+       
+        
+        '''
+        SF = SimpleExtractor.getFeatures(SimpleExtractor, state, action)
+        bias = SF["bias"]
+        GhostsAStepAway = SF["#-of-ghosts-1-step-away"]
+        Eat = SF["eats-food"]
+        closestFood = SF["closest-food"]
+
+        CF = CoordinateExtractor.getFeatures(CoordinateExtractor, state, action)
+        xStance = CF['x=%d' % state[0]]
+        yStance = CF['y=%d' % state[0]]
+        aStance = CF['action=%s' % action]
+
+        IE = IdentityExtractor.getFeatures(IdentityExtractor, state, action)
+        IEFeats = IE[(state, action)] 
+
+        features = [bias, GhostsAStepAway, Eat, closestFood, xStance, yStance, aStance, IEFeats]
+        '''
+        
+        #WD = self.getWeights()
+        
+        
+        #WD = self.getWeights()[(state,action)]
+        #print("WD Before Calculation: ", WD)
+        #print(type(self.getWeights()[(state,action)]))
+        #if self.getWeights()[(state,action)].all() == 0.0:
+        #if (state,action) not in self.getWeights().keys():
+        #if type(self.getWeights()[(state,action)]) is int:
+            
+        '''
+            #n = len(features)
+            #print("Length of FD: ", len(FD))
+            #n = []
+            for i in range(len(features)):
+                n.append(1)
+            WD = n
+            self.weights[(state,action)] = WD
+            #print("WD: ", WD)
+        
+        '''
+        '''
+        import numpy as np
+        
+        FDv = np.array(list(FD.values()))
+        WDv = np.array(WD)
+        #print("FDv:",  FDv)
+        #print("WDv:",  WDv)
+        #self.QVals[(state, action)] = FD[(state,action)] * WD[(state,action)]
+        #self.QVals[(state, action)] = np.dot(WDv, FDv)
+        self.QVals[(state, action)] = np.dot(FDv, WDv)
+        #FD[(state,action)] += FD[(state,action)] * WD[(state,action)]
+        '''
+
+
+
+        #FDv = list(FD.values())
+        #WDv = WD
+        #print("FDv:",  FDv)
+        #print("WDv:",  WDv)
+        
+        #self.QVals[(state, action)] = sum([FDv[i] * WDv[i] for i in range(len(FDv))])
+        #self.QVals[(state, action)] = sum([FDv[i] * WDv[i] for i in range(len(FDv))])
+        
+        #SF = SimpleExtractor.getFeatures(self, state, action)
+
+        FE = self.featExtractor.getFeatures(state, action)
+        #print(FE.keys())
+        #QV = sum([features[i] * WD[i] for i in range(len(WD))])
+        #features = self.getFeatures(state, action)
+        
+        QV = 0
+        for k in FE.keys():
+            QV += FE[k] * self.weights[k]    
+        #QV += SF['bias'] * self.weights['bias']
+        #QV += features[0] * self.weights['bias']
+        #QV += SF['#-of-ghosts-1-step-away'] * self.weights['#-of-ghosts-1-step-away']
+        #QV += features[1] * self.weights['#-of-ghosts-1-step-away']
+        #QV += SF['eats-food'] * self.weights['eats-food']
+        #QV += features[2] * self.weights['eats-food']
+        #QV += SF['closest-food'] * self.weights['closest-food']
+        #QV += features[3] * self.weights['closest-food']
+        
+        #QV +=
+        #QV += features[4] * self.weights['x=%d' % state[0]]
+        #QV += features[5] * self.weights['y=%d' % state[0]]
+        #QV += features[6] * self.weights['action=%s' % action]
+
+        return QV
+
+        #return self.QVals[(state,action)]
+        #util.raiseNotDefined()
 
     def update(self, state, action, nextState, reward: float):
         """
            Should update your weights based on transition
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        #qv = self.getQValue(state, action)
+        #self.get
+        
+        AvailableActs = self.getLegalActions(nextState)
+        
+        #print("AvailableActs: ", self.getLegalActions(nextState))
+        #if len(AvailableActs) > 0:
+
+        #for (s,a) in self.getWeights().keys():
+        #currentFeatures = SimpleExtractor.getFeatures(self, state, action)
+        #cFV = list(currentFeatures.values())
+        #for (s,a) in currentFeatures.keys():
+            
+
+            
+        #cFV = list(SF.values())
+
+        Bellman = max([self.getQValue(nextState,act) for act in self.getLegalActions(nextState)] + [0])
+        difference = (reward + self.discount * Bellman) - self.getQValue(state, action)
+                
+        #print("cFV: ",cFV)            
+            
+        #features = self.getFeatures(state, action)
+        #QV = 0
+        #QV += features[0] * self.weights['bias']
+        #QV += features[1] * self.weights['#-of-ghosts-1-step-away']
+        #QV += features[2] * self.weights['eats-food']
+        #QV += features[3] * self.weights['closest-food']
+        #QV += features[4] * self.weights['x=%d' % state[0]]
+        #QV += features[5] * self.weights['y=%d' % state[0]]
+        #QV += features[6] * self.weights['action=%s' % action]
+
+        #features = self.getFeatures(state, action)
+            
+        for k in self.weights.keys():
+            self.weights[k] = self.getWeights()[k] + (self.alpha * difference * self.featExtractor.getFeatures(state, action)[k])
+                
+            #this doesn't work for some reason...
+            #self.weights[k] = self.weights[k] + (self.alpha * difference * self.featExtractor.getFeatures(state, action)[k])
+                
+        #self.weights['bias'] = self.weights['bias'] + self.alpha * difference * features[0]
+        #self.weights['#-of-ghosts-1-step-away'] = self.weights['#-of-ghosts-1-step-away'] + self.alpha * difference * features[1]
+        #self.weights['eats-food'] = self.weights['eats-food'] + self.alpha * difference * features[2]
+        #self.weights['closest-food'] = self.weights['closest-food'] + self.alpha * difference * features[3]
+        #self.weights['x=%d' % state[0]] = self.weights['x=%d' % state[0]] + self.alpha * difference * features[4]
+        #self.weights['y=%d' % state[0]] = self.weights['y=%d' % state[0]] + self.alpha * difference * features[5]
+        #self.weights['action=%s' % action] = self.weights['action=%s' % action] + self.alpha * difference * features[6]
+
+        '''
+        w = self.weights[(state,action)]                 
+        for i in range(len(self.getWeights())):
+            w[i] =  w[i] + self.alpha * difference * cFV[i]
+        '''
+            
+            
+
+        #print(self.getWeights()[(s,a)])
+        #print((self.alpha * difference * currentFeatures.values()))
+            
+            
+
+        #self.weights[(s,a)] = self.getWeights()[(s,a)] + (self.alpha * difference * currentFeatures[(s,a)])
+                
+        #print("current sa: ", (s,a))
+        #print("Max QV: ", Bellman)
+        #print("Curr Weight: ", self.getWeights()[(state,action)])
+        #self.weights[i] = self.weights[i] + (self.alpha * difference + currentFeatures[i])
+        
+        #print(self.getWeights())
+        #util.raiseNotDefined()
 
     def final(self, state):
         """Called at the end of each game."""
@@ -229,4 +391,5 @@ class ApproximateQAgent(PacmanQAgent):
         if self.episodesSoFar == self.numTraining:
             # you might want to print your weights here for debugging
             "*** YOUR CODE HERE ***"
+            print(self.getWeights())
             pass
