@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:qlearningAgents.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\justi\\Documents\\CS780ArtificialIntelligence\\AI-Project-3\\4_reinforcement\\featureExtractors.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:featureExtractors.py||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\justi\\Documents\\CS780ArtificialIntelligence\\AI-Project-3\\4_reinforcement\\valueIterationAgents.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:valueIterationAgents.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\justi\\Documents\\CS780ArtificialIntelligence\\AI-Project-3\\4_reinforcement\\featureExtractors.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:featureExtractors.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\justi\\Documents\\CS780ArtificialIntelligence\\AI-Project-3\\4_reinforcement\\learningAgents.py||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -30,7 +30,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "featureExtractors.py",
               "DocumentMoniker": "C:\\Users\\justi\\Documents\\CS780ArtificialIntelligence\\AI-Project-3\\4_reinforcement\\featureExtractors.py",
               "RelativeDocumentMoniker": "featureExtractors.py",
@@ -49,10 +49,9 @@
               "RelativeDocumentMoniker": "learningAgents.py",
               "ToolTip": "C:\\Users\\justi\\Documents\\CS780ArtificialIntelligence\\AI-Project-3\\4_reinforcement\\learningAgents.py",
               "RelativeToolTip": "learningAgents.py",
-              "ViewState": "AQIAAF0AAAAAAAAAAIAwwFYAAAAYAAAA",
+              "ViewState": "AQIAAF0AAAAAAAAAAADgv2gAAAAOAAAA",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEzSURBVDhPpZOxioNAGITHwzJlCpuABxYWKVLkAezFtxAs7a5NKQeBpEtjESGgb\u002BAD2AgWNoKChZZ2SWeKwN66eMGNEkjywYC7vzP4Dyh8578Eb1KpP0Af8JY67xd9\u002BAguoKoqpiiKYNs2uxNFEbquIwxD5HmOw\u002BGA\u002BXzOZh1cgCzLCIIARVFgv99D0zQ4joPT6YQ4juG6LtbrNQu9M\u002Bygg5qIqqqkbVtiWRY5n89kt9txu/9rsgPf95EkCS6XCzzPw/V6RdM0/XTMKGC73cIwDCwWC2Y\u002BHo8wTROr1QqKomCz2WA2m/VvUx5XoD1wnylJEknTlM06yrIkNIjNmHcY0JlpQffzUMvlkml4N\u002Bqgrmvcbrf\u002BxJNlGdMjow5ehQugK07qGVyAIAiTesbHK3z0OwPAH6D4xld\u002BSxLJAAAAAElFTkSuQmCC",
-              "WhenOpened": "2024-10-20T19:57:52.066Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-20T19:57:52.066Z"
             },
             {
               "$type": "Document",
@@ -62,20 +61,20 @@
               "RelativeDocumentMoniker": "qlearningAgents.py",
               "ToolTip": "C:\\Users\\justi\\Documents\\CS780ArtificialIntelligence\\AI-Project-3\\4_reinforcement\\qlearningAgents.py",
               "RelativeToolTip": "qlearningAgents.py",
-              "ViewState": "AQIAACsBAAAAAAAAAAAcwJcAAAAJAAAA",
+              "ViewState": "AQIAAFUBAAAAAAAAAAAvwIIBAAAAAAAA",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEzSURBVDhPpZOxioNAGITHwzJlCpuABxYWKVLkAezFtxAs7a5NKQeBpEtjESGgb\u002BAD2AgWNoKChZZ2SWeKwN66eMGNEkjywYC7vzP4Dyh8578Eb1KpP0Af8JY67xd9\u002BAguoKoqpiiKYNs2uxNFEbquIwxD5HmOw\u002BGA\u002BXzOZh1cgCzLCIIARVFgv99D0zQ4joPT6YQ4juG6LtbrNQu9M\u002Bygg5qIqqqkbVtiWRY5n89kt9txu/9rsgPf95EkCS6XCzzPw/V6RdM0/XTMKGC73cIwDCwWC2Y\u002BHo8wTROr1QqKomCz2WA2m/VvUx5XoD1wnylJEknTlM06yrIkNIjNmHcY0JlpQffzUMvlkml4N\u002Bqgrmvcbrf\u002BxJNlGdMjow5ehQugK07qGVyAIAiTesbHK3z0OwPAH6D4xld\u002BSxLJAAAAAElFTkSuQmCC",
               "WhenOpened": "2024-10-19T13:40:14.651Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "valueIterationAgents.py",
               "DocumentMoniker": "C:\\Users\\justi\\Documents\\CS780ArtificialIntelligence\\AI-Project-3\\4_reinforcement\\valueIterationAgents.py",
               "RelativeDocumentMoniker": "valueIterationAgents.py",
               "ToolTip": "C:\\Users\\justi\\Documents\\CS780ArtificialIntelligence\\AI-Project-3\\4_reinforcement\\valueIterationAgents.py",
               "RelativeToolTip": "valueIterationAgents.py",
-              "ViewState": "AQIAACAAAAAAAAAAAAAwwD4AAAAgAAAA",
+              "ViewState": "AQIAAGAAAAAAAAAAAAAmwGUAAAAjAAAA",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEzSURBVDhPpZOxioNAGITHwzJlCpuABxYWKVLkAezFtxAs7a5NKQeBpEtjESGgb\u002BAD2AgWNoKChZZ2SWeKwN66eMGNEkjywYC7vzP4Dyh8578Eb1KpP0Af8JY67xd9\u002BAguoKoqpiiKYNs2uxNFEbquIwxD5HmOw\u002BGA\u002BXzOZh1cgCzLCIIARVFgv99D0zQ4joPT6YQ4juG6LtbrNQu9M\u002Bygg5qIqqqkbVtiWRY5n89kt9txu/9rsgPf95EkCS6XCzzPw/V6RdM0/XTMKGC73cIwDCwWC2Y\u002BHo8wTROr1QqKomCz2WA2m/VvUx5XoD1wnylJEknTlM06yrIkNIjNmHcY0JlpQffzUMvlkml4N\u002Bqgrmvcbrf\u002BxJNlGdMjow5ehQugK07qGVyAIAiTesbHK3z0OwPAH6D4xld\u002BSxLJAAAAAElFTkSuQmCC",
               "WhenOpened": "2024-10-18T18:12:15.579Z",
               "EditorCaption": ""

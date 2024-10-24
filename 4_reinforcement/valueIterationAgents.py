@@ -74,13 +74,13 @@ class ValueIterationAgent(ValueEstimationAgent):
             print("-----------------------------------------------------------------------------------------Iteration #", i, "-------------------------------------------------------------------------------------------------------------")    
             print("-----------------------------------------------------------------------------------------Iteration #", i, "-------------------------------------------------------------------------------------------------------------")    
             print("-----------------------------------------------------------------------------------------Iteration #", i, "-------------------------------------------------------------------------------------------------------------")    
-            ValueClone = self.values.copy()
+            ValueDict = self.values.copy()
             
             for j in range(len(StateList)):
                 currState = StateList[j] 
                 #self.dispow = 0       
                 print("\n")
-                
+                U = 0
                 if(len(self.mdp.getPossibleActions(currState)) > 0):     
                     #while(True):     
                     #print("Not Terminal")
@@ -96,10 +96,11 @@ class ValueIterationAgent(ValueEstimationAgent):
                     #    break
                     acts = self.mdp.getPossibleActions(currState)
                     U = max([self.getQValue(currState, a) for a in acts])
-                    ValueClone[currState] = U
+                    ValueDict[currState] = U
                     
             
-            self.values = ValueClone
+            self.values = ValueDict
+            #self.values[currState] = U
             #We want to clone the dictionary so that we update the Values ONLY when the iteration is done.
                 
                 #else:

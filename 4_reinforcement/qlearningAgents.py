@@ -214,6 +214,8 @@ class ApproximateQAgent(PacmanQAgent):
         """
         "*** YOUR CODE HERE ***"
        
+        #print("\ngetQValue is ran with:", (state, action))
+        #print("Episode: ", self.episodesSoFar)
         
         '''
         SF = SimpleExtractor.getFeatures(SimpleExtractor, state, action)
@@ -231,7 +233,7 @@ class ApproximateQAgent(PacmanQAgent):
         IEFeats = IE[(state, action)] 
 
         features = [bias, GhostsAStepAway, Eat, closestFood, xStance, yStance, aStance, IEFeats]
-        '''
+        
         
         #WD = self.getWeights()
         
@@ -243,7 +245,7 @@ class ApproximateQAgent(PacmanQAgent):
         #if (state,action) not in self.getWeights().keys():
         #if type(self.getWeights()[(state,action)]) is int:
             
-        '''
+        
             #n = len(features)
             #print("Length of FD: ", len(FD))
             #n = []
@@ -253,8 +255,8 @@ class ApproximateQAgent(PacmanQAgent):
             self.weights[(state,action)] = WD
             #print("WD: ", WD)
         
-        '''
-        '''
+        
+        
         import numpy as np
         
         FDv = np.array(list(FD.values()))
@@ -265,10 +267,6 @@ class ApproximateQAgent(PacmanQAgent):
         #self.QVals[(state, action)] = np.dot(WDv, FDv)
         self.QVals[(state, action)] = np.dot(FDv, WDv)
         #FD[(state,action)] += FD[(state,action)] * WD[(state,action)]
-        '''
-
-
-
         #FDv = list(FD.values())
         #WDv = WD
         #print("FDv:",  FDv)
@@ -279,14 +277,48 @@ class ApproximateQAgent(PacmanQAgent):
         
         #SF = SimpleExtractor.getFeatures(self, state, action)
 
-        FE = self.featExtractor.getFeatures(state, action)
         #print(FE.keys())
         #QV = sum([features[i] * WD[i] for i in range(len(WD))])
         #features = self.getFeatures(state, action)
         
+        #QV = 0
+
+        #self.QVals[(state,action)] = 0.0
+        
+        '''
+
+
         QV = 0
+        FE = self.featExtractor.getFeatures(state, action)
+        W = self.getWeights()
+        '''
+        #print(self.QVals.keys())
+        #if(state,action) not in self.QVals.keys():
+        #    print("Populating QVal of: ", (state, action))    
+        #    self.QVals[(state,action)] = 0.0
+            #return self.QVals[(state,action)]
+        
+
+        #if action == 'exit':
+            #return self.QVals[(state,action)]
+
+        #import numpy as np
+        #if len(list(self.getWeights().values())) < 1:
+        #    return 0.0    
+        #self.QVals[(state,action)] += np.dot(list(self.getWeights().values()), list(FE.values()))
+        #self.QVals[(state,action)] = list(FE) @ list(self.getWeights())
+        '''
         for k in FE.keys():
-            QV += FE[k] * self.weights[k]    
+            #print("Curr QVal: ", self.QVals[(state,action)])
+
+            #self.QVals[(state,action)] += FE[k] * self.getWeights()[k]    
+            #QV += FE[k] * self.getWeights()[k]    
+            QV += FE[k] * W[k]    
+            #print("Curr Key: ", k)
+            #print("Curr FeatureValue: ", FE[k])
+            #print("Curr Weight: ", self.getWeights()[k])
+            
+        '''
         #QV += SF['bias'] * self.weights['bias']
         #QV += features[0] * self.weights['bias']
         #QV += SF['#-of-ghosts-1-step-away'] * self.weights['#-of-ghosts-1-step-away']
@@ -301,9 +333,14 @@ class ApproximateQAgent(PacmanQAgent):
         #QV += features[5] * self.weights['y=%d' % state[0]]
         #QV += features[6] * self.weights['action=%s' % action]
 
-        return QV
+        #return QV
 
+        #print("Putting into QVals: ", self.QVals[(state,action)])
+        '''
+        
+        
         #return self.QVals[(state,action)]
+        return QV
         #util.raiseNotDefined()
 
     def update(self, state, action, nextState, reward: float):
@@ -311,10 +348,12 @@ class ApproximateQAgent(PacmanQAgent):
            Should update your weights based on transition
         """
         "*** YOUR CODE HERE ***"
+        #print("\nupdate is ran")
+        '''
         #qv = self.getQValue(state, action)
         #self.get
         
-        AvailableActs = self.getLegalActions(nextState)
+        #AvailableActs = self.getLegalActions(nextState)
         
         #print("AvailableActs: ", self.getLegalActions(nextState))
         #if len(AvailableActs) > 0:
@@ -327,10 +366,35 @@ class ApproximateQAgent(PacmanQAgent):
 
             
         #cFV = list(SF.values())
+        #if(len(self.getLegalActions(nextState)) > 0):     
+        #if 'exit' not in self.getLegalActions(state):
+        
+        #print("\nQNext Calc:")        
+        #QNext = max([self.getQValue(nextState,act) for act in self.getLegalActions(nextState)] + [0])
+        #if action == 'exit':
+        #    return
+        #q = [self.QVals[(nextState,act)] for act in self.getLegalActions(nextState)]
+        '''
+        #q = [self.QVals[(nextState,act)] for act in self.getLegalActions(nextState)] + [0]
+        #LS = self.getLegalActions(nextState)
+        #QNext = max([self.getQValue(nextState,act) for act in self.getLegalActions(nextState)] + [0])
+        #print(q)
+        #QNext = max(q)
+        #Bellman = reward + self.discount * QNext
+        #print("\nDifference Calc:")
+        #difference = Bellman - self.getQValue(state, action)
+        #difference = Bellman - self.QVals[(state,action)]
 
-        Bellman = max([self.getQValue(nextState,act) for act in self.getLegalActions(nextState)] + [0])
-        difference = (reward + self.discount * Bellman) - self.getQValue(state, action)
-                
+        difference = (reward + self.discount * self.computeValueFromQValues(nextState)) - self.getQValue(state,action)
+
+        #print("Acts of next state ", nextState, ":", self.getLegalActions(nextState))
+        #print("Alpha: ", self.alpha)
+        #print("Reward: ",reward)
+        #print("Discount: ",self.discount)
+        #print("Max of QNext:",QNext)
+        #print("Bellman:",Bellman)
+        #print("Difference: ", difference)
+        '''
         #print("cFV: ",cFV)            
             
         #features = self.getFeatures(state, action)
@@ -345,12 +409,20 @@ class ApproximateQAgent(PacmanQAgent):
 
         #features = self.getFeatures(state, action)
             
-        for k in self.weights.keys():
-            self.weights[k] = self.getWeights()[k] + (self.alpha * difference * self.featExtractor.getFeatures(state, action)[k])
+        #for k in self.getWeights().keys():
+        '''
+        for k in self.featExtractor.getFeatures(state,action).keys():
+        #for k in self.getWeights().keys():
+            #print("Adjusting Weight for key:", k)    
+            #print("Weights: ", self.getWeights())
+        
+            #self.weights[k] = self.getWeights()[k] + (self.alpha * difference * self.featExtractor.getFeatures(state, action)[k])
                 
             #this doesn't work for some reason...
-            #self.weights[k] = self.weights[k] + (self.alpha * difference * self.featExtractor.getFeatures(state, action)[k])
+            if(k in self.featExtractor.getFeatures(state,action).keys()):
+                self.weights[k] = self.weights[k] + (self.alpha * difference * self.featExtractor.getFeatures(state, action)[k])
                 
+        '''
         #self.weights['bias'] = self.weights['bias'] + self.alpha * difference * features[0]
         #self.weights['#-of-ghosts-1-step-away'] = self.weights['#-of-ghosts-1-step-away'] + self.alpha * difference * features[1]
         #self.weights['eats-food'] = self.weights['eats-food'] + self.alpha * difference * features[2]
@@ -358,12 +430,12 @@ class ApproximateQAgent(PacmanQAgent):
         #self.weights['x=%d' % state[0]] = self.weights['x=%d' % state[0]] + self.alpha * difference * features[4]
         #self.weights['y=%d' % state[0]] = self.weights['y=%d' % state[0]] + self.alpha * difference * features[5]
         #self.weights['action=%s' % action] = self.weights['action=%s' % action] + self.alpha * difference * features[6]
-
-        '''
+        
+      
         w = self.weights[(state,action)]                 
         for i in range(len(self.getWeights())):
             w[i] =  w[i] + self.alpha * difference * cFV[i]
-        '''
+        
             
             
 
@@ -379,7 +451,9 @@ class ApproximateQAgent(PacmanQAgent):
         #print("Curr Weight: ", self.getWeights()[(state,action)])
         #self.weights[i] = self.weights[i] + (self.alpha * difference + currentFeatures[i])
         
-        #print(self.getWeights())
+        #print("CurrentFeatures: ", self.featExtractor.getFeatures(state,action))
+        '''
+        #print("Final Weights: ", self.getWeights())
         #util.raiseNotDefined()
 
     def final(self, state):
@@ -391,5 +465,5 @@ class ApproximateQAgent(PacmanQAgent):
         if self.episodesSoFar == self.numTraining:
             # you might want to print your weights here for debugging
             "*** YOUR CODE HERE ***"
-            print(self.getWeights())
+            #print("Final Weights: ", self.getWeights())
             pass
